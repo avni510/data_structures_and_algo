@@ -2,8 +2,9 @@ import pytest
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/src/trees")
 
-from binary_tree import BinaryTree
+from binary_tree import BinaryTree, BinarySearchTree
 from binary_tree import height
+from search_algorithms import inorder
 
 def test_left_child_is_returned():
     tree = BinaryTree(4)
@@ -31,4 +32,24 @@ def test_height():
 
     assert result == 3
 
+def test_equality():
+    tree_1 = BinaryTree(5)
+    tree_1.insert_left(2)
+    tree_1.insert_left(1)
+    tree_1.insert_right(7)
 
+    tree_2 = BinaryTree(5)
+    tree_2.insert_left(2)
+    tree_2.insert_left(1)
+    tree_2.insert_right(7)
+
+    assert tree_1 == tree_2
+
+def test_binary_search_tree():
+    tree = BinarySearchTree(30)
+    tree.insert(20)
+    tree.insert(35)
+    tree.insert(10)
+    tree.insert(25)
+
+    assert inorder(tree) == [10, 20, 25, 30, 35]

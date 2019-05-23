@@ -2,7 +2,9 @@
 ## Runtime: O(N)
 
 # traverses left -> parent -> right
-def inorder(tree, values = []):
+def inorder(tree, values = None):
+    if values is None:
+        values = []
     if tree:
         inorder(tree.get_left_child(), values)
         values.append(tree.get_root_value())
