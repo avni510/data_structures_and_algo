@@ -53,3 +53,25 @@ def test_binary_search_tree():
     tree.insert(25)
 
     assert inorder(tree) == [10, 20, 25, 30, 35]
+
+def test_find_binary_search_tree():
+    tree = BinarySearchTree(30)
+    tree.insert(20)
+    tree.insert(35)
+    tree.insert(10)
+    tree.insert(25)
+
+    found_tree = tree.find(20)
+
+    assert inorder(found_tree) == [10, 20, 25]
+
+def test_find_binary_search_tree_returns_none():
+    tree = BinarySearchTree(30)
+    tree.insert(20)
+    tree.insert(35)
+    tree.insert(10)
+    tree.insert(25)
+
+    found_tree = tree.find(40)
+
+    assert found_tree == None

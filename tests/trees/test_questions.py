@@ -104,8 +104,7 @@ def test_weave_simple_case():
     array_1 = [10, 5]
     array_2 = [25]
 
-    result = []
-    weave(array_1, array_2, result, [])
+    result = weave(array_1, array_2, [], [])
 
     assert [10, 5, 25] in result
     assert [10, 25, 5] in result
@@ -115,8 +114,7 @@ def test_weave_complex_case():
     array_1 = [1, 2]
     array_2 = [3, 4]
 
-    result = []
-    weave(array_1, array_2, result, [])
+    result = weave(array_1, array_2, [], [])
 
     assert [1, 2, 3, 4] in result
     assert [1, 3, 2, 4] in result
@@ -144,4 +142,56 @@ def test_all_sequences():
     assert [20, 10, 25, 15, 5] in result
     assert [20, 25, 10, 15, 5] in result
 
+def test_order_string():
+    tree_1 = BinaryTree(10)
+    tree_1.insert_left(1)
+    tree_1.insert_left(2)
 
+    result = get_order_string(tree_1)
+
+    assert result == "10 2 1 X X X X "
+
+def test_check_subtree_returns_true():
+    tree = BinaryTree(20)
+    tree.insert_left(1)
+    tree.insert_left(2)
+    tree.insert_left(10)
+    tree.insert_right(30)
+    tree.insert_right(25)
+
+    subtree = BinaryTree(10)
+    subtree.insert_left(1)
+    subtree.insert_left(2)
+
+    assert check_subtree(tree, subtree)
+
+def test_check_subtree_returns_false():
+    tree = BinaryTree(20)
+    tree.insert_left(1)
+    tree.insert_left(2)
+    tree.insert_right(30)
+    tree.insert_right(25)
+
+    subtree = BinaryTree(10)
+    subtree.insert_left(1)
+    subtree.insert_left(2)
+
+    assert not check_subtree(tree, subtree)
+
+def test_insert_special_binary_search_tree():
+    tree = SpecialBinarySearchTree(30)
+    tree.insert(20)
+    tree.insert(35)
+    tree.insert(10)
+
+    assert tree.number_of_nodes == 4 
+
+def test_random_node_special_bst():
+    tree = SpecialBinarySearchTree(30)
+    tree.insert(20)
+    tree.insert(35)
+    tree.insert(10)
+
+    node = tree.get_random_node()
+
+    assert node in inorder(tree)

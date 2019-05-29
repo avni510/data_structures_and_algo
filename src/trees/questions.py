@@ -4,6 +4,7 @@
 from binary_tree import BinaryTree
 from search_algorithms import inorder
 import copy 
+import random
 
 def create_min_tree(values, start = 0, end = None):
     if end is None:
@@ -122,7 +123,7 @@ def weave(first, second, result, prefix):
     if not first or not second:
         weaved_array = copy.deepcopy(prefix) + first + second
         result += [weaved_array]
-        return
+        return result
 
     first_head = first[0]
     new_prefix = copy.deepcopy(prefix) + [first_head]
@@ -130,7 +131,7 @@ def weave(first, second, result, prefix):
     
     second_head = second[0]
     new_prefix = copy.deepcopy(prefix) + [second_head]
-    weave(first, second[1:], result, new_prefix)
+    return weave(first, second[1:], result, new_prefix)
 
 def all_sequences(tree):
     result = []
@@ -152,19 +153,94 @@ def all_sequences(tree):
         # subtree
         for left in left_seq:
             for right in right_seq:
-                weaved = []
-                weave(left, right, weaved, prefix)
+                weaved = weave(left, right, [], prefix)
                 result += weaved
         return result
 
 
-# 4.10 Check Subtree: Tl and T2 are two very large binary trees, with Tl much bigger than T2. 
+# 4.10 Check Subtree: T1 and T2 are two very large binary trees, with T1 much bigger than T2. 
 # Create an algorithm to determine if T2 is a subtree of T1
+
+def get_order_string(tree, order_string = ""):
+    if not tree:
+        order_string += "X "
+        return order_string
+    else:
+        order_string += str(tree.data) + " "
+        order_string = get_order_string(tree.left, order_string)
+        return get_order_string(tree.right, order_string)
+
+def check_subtree(tree, subtree):
+    tree_order_string = get_order_string(tree)
+    subtree_order_string = get_order_string(subtree)
+
+    return subtree_order_string in tree_order_string
+
 
 # 4.11 Random Node: You are implementing a binary search tree class from scratch, which, in addition to insert, 
 # find, and delete, has a method getRandomNode() which returns a random node from the tree. 
 # All nodes should be equally likely to be chosen. 
-# Design and implement an algorithm forget Random Node, and explain how you would implement the rest of the methods.
+# Design and implement an algorithm for getRandomNode, and explain how you would implement the rest of the methods.
+
+class SpecialBinarySearchTree():
+    def __init__(self, value):
+        self.data = value
+        self.left = None
+        self.right = None
+        self.number_of_nodes = 1
+
+    def get_left_child(self):
+        return self.left
+
+    def get_right_child(self):
+        return self.right
+
+    def get_root_value(self):
+        return self.data
+
+    def insert(self, value):
+        if self.data > value:
+            if not self.left:
+                self.left = SpecialBinarySearchTree(value)
+            else:
+                self.left.insert(value)
+        else:
+            if not self.right:
+                self.right = SpecialBinarySearchTree(value)
+            else:
+                self.right.insert(value)
+        self.number_of_nodes += 1
+
+    # probability of selecting a node is 1/N
+    # probability of selecting a node from the left 
+    # is (number of nodes on the left * 1/N)
+    # probability of selecting a node from the right 
+    # is (number of nodes on the right * 1/N)
+    def get_random_node(self):
+        if self.left:
+            left_number_of_nodes = self.left.number_of_nodes
+        else:
+            left_number_of_nodes = 1
+
+        index = random.randint(1, self.number_of_nodes)
+        print("self number of nodes")
+        print(self.number_of_nodes)
+        print("INDEX")
+        print(index)
+        print("LEFT")
+        print(left_number_of_nodes)
+
+        # falls into the probablity that you should keep traversing left
+        # ex: left side is 10 and total nodes is 20
+        # if the index is less than 10 then it falls into the probablity to
+        # keep traversing left
+        if index < left_number_of_nodes:
+            return self.left.get_random_node()
+        # probablity 1/N, the node is picked
+        elif index == left_number_of_nodes:
+            return self.data
+        else:
+            return self.right.get_random_node()
 
 # 4.12 Paths with Sum: You are given a binary tree in which each node contains an integer value 
 # (which might be positive or negative). Design an algorithm to count the number of paths 

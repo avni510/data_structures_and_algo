@@ -33,8 +33,7 @@ class BinaryTree:
         tree.parent = self.right.parent if self.right.parent else self
     
     def __eq__(self, rhs):
-        return inorder(self) == inorder(rhs)
-
+        return inorder(self) == inorder(rhs) 
 class BinarySearchTree:
     def __init__(self, data):
         self.data = data
@@ -68,7 +67,16 @@ class BinarySearchTree:
             else:
                 self.left.insert(value)
 
-    
+    def find(self, value):
+        if self.data == value:
+            return self
+        elif self.data < value and self.right:
+            return self.right.find(value)
+        elif self.data > value and self.left:
+            return self.left.find(value)
+        else:
+            return None
+
     def __eq__(self, rhs):
         return inorder(self) == inorder(rhs)
     
