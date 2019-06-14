@@ -1,4 +1,4 @@
-from search_algorithms import inorder
+from src.trees.search_algorithms import inorder
 ## downsides of this implementation - it inserts regardless if the node is empty or not. 
 
 class BinaryTree:

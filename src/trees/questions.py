@@ -1,8 +1,8 @@
 # 4.2 Given a sorted (increasing order) array with unique integer elements,
 # write an algorithm to create a binary search tree with minimal height
 
-from binary_tree import BinaryTree
-from search_algorithms import inorder
+from src.trees.binary_tree import BinaryTree
+from src.trees.search_algorithms import inorder
 import copy 
 import random
 

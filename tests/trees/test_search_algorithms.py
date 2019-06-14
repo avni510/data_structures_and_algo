@@ -1,10 +1,9 @@
 import pytest
-import sys, os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/src/trees")
+# import sys, os
+# sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/src/trees")
 
-from binary_tree import BinaryTree
-from search_algorithms import inorder, preorder, postorder
-from search_algorithms import bfs
+from src.trees.binary_tree import BinaryTree
+from src.trees.search_algorithms import inorder, preorder, postorder, bfs
 
 @pytest.fixture()
 def tree():
