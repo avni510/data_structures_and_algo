@@ -1,6 +1,4 @@
 import pytest
-# import sys, os
-# sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/src/trees")
 
 from src.trees.binary_tree import BinaryTree, BinarySearchTree, height
 from src.trees.search_algorithms import inorder

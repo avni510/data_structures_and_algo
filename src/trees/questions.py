@@ -223,24 +223,18 @@ class SpecialBinarySearchTree():
             left_number_of_nodes = 1
 
         index = random.randint(1, self.number_of_nodes)
-        print("self number of nodes")
-        print(self.number_of_nodes)
-        print("INDEX")
-        print(index)
-        print("LEFT")
-        print(left_number_of_nodes)
 
         # falls into the probablity that you should keep traversing left
         # ex: left side is 10 and total nodes is 20
         # if the index is less than 10 then it falls into the probablity to
         # keep traversing left
-        if index < left_number_of_nodes:
+        if self.left and index < left_number_of_nodes:
             return self.left.get_random_node()
-        # probablity 1/N, the node is picked
-        elif index == left_number_of_nodes:
-            return self.data
-        else:
+        elif self.right and index > left_number_of_nodes:
             return self.right.get_random_node()
+        # probablity 1/N, the node is picked
+        else:
+            return self.data
 
 # 4.12 Paths with Sum: You are given a binary tree in which each node contains an integer value 
 # (which might be positive or negative). Design an algorithm to count the number of paths 
