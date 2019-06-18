@@ -1,6 +1,6 @@
 import pytest
 
-from src.trees.questions import * 
+from src.trees.tree_questions import * 
 from src.trees.binary_tree import height, BinaryTree, BinarySearchTree
 from src.trees.search_algorithms import inorder
 

@@ -6,6 +6,8 @@ setup(
         'src',
         'src.trees',
         'src.linked_lists',
+        'src.arrays',
+        'src.sorting'
     ],
     include_package_data=True,
     install_requires=[],

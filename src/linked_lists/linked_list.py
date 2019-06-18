@@ -23,10 +23,29 @@ class LinkedList:
         self.head = None
 
     def add(self, value):
-        node = new Node(value)
+        node = Node(value)
         node.next = self.head
         self.head = node
 
     def is_empty(self):
         return self.head is None
 
+    def to_array(self):
+        array = []
+        n = self.head
+        while n:
+            array.append(n.data)
+            n = n.next
+        return array
+    
+    def __eq__(self, other):
+        n1 = self.head
+        n2 = other.head
+
+        while n1 and n2:
+            if n1.data != n2.data:
+                return False
+            n1 = n1.next
+            n2 = n2.next
+
+        return n1 is None and n2 is None
