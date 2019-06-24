@@ -7,7 +7,8 @@ setup(
         'src.trees',
         'src.linked_lists',
         'src.arrays',
-        'src.sorting'
+        'src.sorting',
+        'src.heaps'
     ],
     include_package_data=True,
     install_requires=[],
