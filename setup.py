@@ -8,7 +8,8 @@ setup(
         'src.linked_lists',
         'src.arrays',
         'src.sorting',
-        'src.heaps'
+        'src.heaps',
+        'src.queues'
     ],
     include_package_data=True,
     install_requires=[],

@@ -1,6 +1,3 @@
-# 4.1 Route Between Nodes: Given a directed graph, design an algorithm to 
-# find out whether there is a route between two nodes.
-
 # 4.2 Given a sorted (increasing order) array with unique integer elements,
 # write an algorithm to create a binary search tree with minimal height
 
@@ -43,7 +40,6 @@ def linked_list_tree(tree):
 # 4.4 Implement a function to check if a binary tree is balanced. A balanced tree
 # is defined as a tree such that the heights of the two subtrees of any node
 # never differ by more than one
-
 # keeps track of the height of the tree as it goes along. If the height is off
 # by more than one it returns False
 
@@ -118,15 +114,6 @@ def common_ancestor(tree_1, tree_2):
     else:
         common_ancestor(tree_1.parent, tree_2.parent)
 
-# 4.7 Build Order: You are given a list of projects and a list of dependencies 
-# (which is a list of pairs of projects, where the second project 
-# is dependent on the first project). All of a project'sdependencies must be 
-# built before the project is. Find a build order that will allow the projects 
-# to be built. If there is no valid build order, return an error
-
-# 4.8 First Common Ancestor: Design an algorithm and write code to find the first common 
-# ancestor of two nodes in a binary tree. Avoid storing additional nodes in a data structure. NOTE: This is not necessarily a binary search tree.
-
 # 4.9 BST Sequences: A binary search tree was created by traversing through an array from left to right and inserting 
 # each element. Given a binary search tree with distinct elements, print all possible arrays that could have 
 # led to this tree
@@ -168,7 +155,6 @@ def all_sequences(tree):
                 weaved = weave(left, right, [], prefix)
                 result += weaved
         return result
-
 
 # 4.10 Check Subtree: T1 and T2 are two very large binary trees, with T1 much bigger than T2. 
 # Create an algorithm to determine if T2 is a subtree of T1
