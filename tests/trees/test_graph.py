@@ -40,3 +40,30 @@ def test_bfs():
     v1 = g.get_vertex(1)
     
     assert g.bfs(v1) == [1, 2, 5, 6, 3, 4]
+
+def test_dfs():
+    g = Graph()
+    
+    for i in range(1, 7):
+        g.add_vertex(i)
+
+    g.add_edge(1, 2)
+    g.add_edge(1, 5)
+    g.add_edge(1, 6)
+    g.add_edge(2, 5)
+    g.add_edge(2, 3)
+    g.add_edge(5, 4)
+    g.add_edge(3, 4)
+
+    v1 = g.get_vertex(1)
+
+    g.dfs(v1)
+
+    v4 = g.get_vertex(4)
+
+    assert g.entry_time[v4] == 4
+    assert g.exit_time[v4] == 7
+
+    v5 = g.get_vertex(5)
+    assert g.parent[v4] == v5
+

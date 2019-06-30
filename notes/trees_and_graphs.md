@@ -47,3 +47,9 @@
       - this take O(log N)
 
 * TO DO: Review Binary Heaps and Tries
+
+### Graphs
+* Time Complexity for an adjacency list is O(N + M)
+Explanation: O(N + summation(all the degrees on a graph))
+summation(all the degrees on a graph) = 2M Ex: 5 edges will have 10 traversals
+because each edge is connected by 2 vertices

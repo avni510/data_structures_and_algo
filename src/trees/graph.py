@@ -22,14 +22,15 @@ class Graph:
     # processed - occurs when all the children of vertex
     # have been discovered
     # parent - for an edge v1 to v2, the parent is 
-    # v1 and child is v2
-    # undiscovered - when a vertex has not be discovered
-
+    # v1 and child is v2 undiscovered - when a vertex has not be discovered 
     def __init__(self):
         self.vertices = {}
         self.discovered = {}
         self.processed = {}
         self.parent = {}
+        self.time = 0
+        self.entry_time = {}
+        self.exit_time = {}
 
     def add_vertex(self, data):
         new_vertex = Vertex(data)
@@ -75,8 +76,34 @@ class Graph:
     def get_vertices(self):
         return list(self.vertices.keys())
 
+    def get_vertices_values(self):
+        return list(self.vertices.values())
+
     def __init_search(self):
         for data, vertex in self.vertices.items():
             self.discovered[vertex] = False
             self.processed[vertex] = False
             self.parent[vertex] = None
+            self.entry_time[vertex] = None
+            self.exit_time[vertex] = None
+
+    def dfs(self, curr_vertex):
+        self.__init_search()
+        self.visit_dfs(curr_vertex)
+
+
+    def visit_dfs(self, curr_vertex):
+        self.time += 1
+        self.entry_time[curr_vertex] = self.time
+        self.discovered[curr_vertex] = True
+
+        for vertex in curr_vertex.get_connections():
+            if not self.discovered[vertex]:
+                self.parent[vertex] = curr_vertex
+                self.visit_dfs(vertex)
+
+        self.time += 1
+        self.exit_time[curr_vertex] = self.time
+
+        self.processed[curr_vertex] = True
+
