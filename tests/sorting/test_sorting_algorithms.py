@@ -24,13 +24,13 @@ def test_merge_sort():
 
 def test_quick_sort():
     array_1 = [3, 5, 2, 7, 4, 1]
-
     quick_sort(array_1)
-
     assert array_1 == [1, 2, 3, 4, 5, 7]
 
     array_2 = [1, 2, 3]
-
     quick_sort(array_2)
-
     assert array_2 == [1, 2, 3]
+
+    array_3 = [4, 3, 6, 1]
+    quick_sort(array_3)
+    assert array_3 == [1, 3, 4, 6]

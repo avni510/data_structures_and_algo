@@ -12,7 +12,7 @@ def bubble_sort(array):
                 array[i + 1] = temp
     return array
 
-## Selection Sort - find the max element, swap it with the 
+## Selection Sort - find the max element, swap it with the
 # last element in the array
 # Runtime: O(n^2)
 # Space Complexity: O(1)
@@ -31,21 +31,19 @@ def selection_sort(array):
         temp = array[size]
         array[size] = array[max_index]
         array[max_index] = temp
-    
+
     return array
 
-## Insertion Sort - array can be thought of as a subset of arrays.
-# start with the first element as sorted. Slowly increasing the window
-# And keep a sorted array within the window.
-# Sorted this window array by sliding over elements to the right that are larger
-# once the correct position is found place the value there
+## Insertion Sort - removes an element per iteration and finds the place the element belongs
+# in the array. For each element A[i] > A[i + 1], swap until
+# A[i] <= A[i + 1]
 # Runtime: O(N^2)
 def insertion_sort(array):
     for index in range(1, len(array)):
         current_value = array[index]
         position = index
 
-        while position > 0 and array[position- 1] > current_value:
+        while position > 0 and array[position - 1] > current_value:
             array[position] = array[position - 1]
             position -= 1
 
@@ -55,7 +53,7 @@ def insertion_sort(array):
 
 
 ## Bucket Sort - break down the array into buckets. Sort each bucket. Make
-# winodw of the bucket smaller
+# window of the bucket smaller
 # Runtime: O(N^2)
 # Space Complexity:
 
@@ -83,15 +81,15 @@ def sort_bucket(array, start, gap):
 
 
 ## Merge Sort
-# Runtime: O(N log(N)) 
+# Runtime: O(N log(N))
 def merge_sort(array):
     if len(array) < 2:
         return array
     else:
         mid = len(array) // 2
 
-        lefthalf = array[mid:]
-        righthalf = array[:mid]
+        lefthalf = array[:mid]
+        righthalf = array[mid:]
 
         lefthalf = merge_sort(lefthalf)
         righthalf = merge_sort(righthalf)
@@ -123,6 +121,14 @@ def merge_sort(array):
 ## Quick Sort
 # Runtime: O(N log(N)) on Average, O(N^2) Worst Case
 # Space Complexity: O(N log(N))
+# Given an array, pick the first value as the pivot
+# continue moving left and right if left value is less than pivot
+# and right value is great than pivot. If not swap the values
+# stop when left > right. Swap the right value with the pivot
+# return the right value as the split value -> sort the left
+# half, then the right half.
+
+# Essentially trying to find the right position for the pivot point
 
 def quick_sort(array):
     quick_sort_helper(array, 0, len(array) - 1)
@@ -145,7 +151,7 @@ def parition(array, first, last):
         while left_marker <= right_marker and array[left_marker] <= pivot:
             left_marker += 1
 
-        while right_marker >= left_marker and array[right_marker] >= pivot:
+        while left_marker <= right_marker and array[right_marker] >= pivot:
             right_marker -= 1
 
         if left_marker > right_marker:

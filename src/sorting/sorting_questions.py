@@ -1,8 +1,9 @@
 from src.trees.search_algorithms import inorder
+import heapq
 
-## 10.1 Sorted Merge: You are given two sorted arrays, 
+## 10.1 Sorted Merge: You are given two sorted arrays,
 # A and B, where A has a large enough buffer at the
-# end to hold B. Write a method to merge B into A in 
+# end to hold B. Write a method to merge B into A in
 # sorted order.
 def sorted_merge(array_a, array_b, last_a, last_b):
     for element in array_b:
@@ -21,7 +22,7 @@ def sorted_merge(array_a, array_b, last_a, last_b):
             index_b -= 1
         index_merged -= 1
 
-## 10.2 Group Anagrams: Write a method to sort an array of strings 
+## 10.2 Group Anagrams: Write a method to sort an array of strings
 # so that all the anagrams are next to each other.
 def group_anagrams(array):
     anagram_dictionary = get_anagram_dictionary(array)
@@ -30,7 +31,7 @@ def group_anagrams(array):
     for key, value in anagram_dictionary.items():
         sorted_array += value
 
-    return sorted_array 
+    return sorted_array
 
 
 def is_anagram(string1, string2):
@@ -52,9 +53,9 @@ def get_anagram_dictionary(array):
     return anagram_dictionary
 
 
-## 10.3 Search in Rotated Array: Given a sorted array of n integers 
-# that has been rotated an unknown number of times, write code to find 
-# an element in the array. You may assume that the array was originally 
+## 10.3 Search in Rotated Array: Given a sorted array of n integers
+# that has been rotated an unknown number of times, write code to find
+# an element in the array. You may assume that the array was originally
 # sorted in increasing order.
 
 def search_rotated(array, value):
@@ -68,7 +69,7 @@ def binary_search_rotated(array, left, right, value):
 
     if right < left:
         return None
-    
+
     if array[left] < array[midpoint]:
         # normal half is lefthalf
         if value >= array[left] and value < array[midpoint]:
@@ -84,6 +85,7 @@ def binary_search_rotated(array, left, right, value):
             return binary_search_rotated(array, left, midpoint - 1, value)
 
     elif array[left] == array[midpoint]:
+        # left or right half is all repeats
         if array[midpoint] != array[right]:
             return binary_search_rotated(array, midpoint + 1, right, value)
         else:
@@ -92,15 +94,15 @@ def binary_search_rotated(array, left, right, value):
                 return binary_search_rotated(array, midpoint + 1, right, value)
             else:
                 return result
-    else: 
+    else:
         return None
 
-## 10.4 Sorted Search, No Size: You are given an array-like data structure Listy 
-# which lacks a size method.It does, however, have an elementAt(i) method that 
-# returns the element at index i in 0(1) time. If i is beyond the bounds of the 
-# data structure, it returns -1. (For this reason, the data structure only 
-# supports positive integers.) Given a Listy which contains sorted, positive integers, 
-# find the index at which an element x occurs. If x occurs multiple times, you may 
+## 10.4 Sorted Search, No Size: You are given an array-like data structure Listy
+# which lacks a size method.It does, however, have an elementAt(i) method that
+# returns the element at index i in 0(1) time. If i is beyond the bounds of the
+# data structure, it returns -1. (For this reason, the data structure only
+# supports positive integers.) Given a Listy which contains sorted, positive integers,
+# find the index at which an element x occurs. If x occurs multiple times, you may
 # return any index.
 
 def search_listy(listy, value):
@@ -126,9 +128,10 @@ def binary_search(listy, low, high, value):
 def index_exists(listy, index):
     return index < len(listy)
 
-## 10.5 Sparse Search: Given a sorted array of strings that is interspersed 
+## 10.5 Sparse Search: Given a sorted array of strings that is interspersed
 # with empty strings, write a method to find the location of a given string.
 
+# Not possible to have faster than O(N) for this problem
 def sparse_search(array, value):
     return binary_sparse_search(array, 0, len(array) - 1, value)
 
@@ -137,7 +140,7 @@ def binary_sparse_search(array, low, high, value):
 
     if low > high:
         return None
-    
+
     midpoint = search_nonempty(array, low, high)
 
     if array[midpoint] == value:
@@ -149,7 +152,9 @@ def binary_sparse_search(array, low, high, value):
         return binary_sparse_search(array, midpoint + 1, high, value)
     else:
         return None
-    
+
+# finds the first non empty string. Picks the midpoint and finds the
+# closest non empty value
 def search_nonempty(array, low, high):
     midpoint = (low + high) // 2
 
@@ -171,19 +176,19 @@ def search_nonempty(array, low, high):
     return midpoint
 
 
-## 10.6 Sort Big File: Imagine you have a 20 GB file with one string per line. 
+## 10.6 Sort Big File: Imagine you have a 20 GB file with one string per line.
 # Explain how you would sort the file.
 
 # Since it's a big file we don't want to bring it in memory
-# So we only bring part of it in memory. 
+# So we only bring part of it in memory.
 # We divde the file into chunks which are X megabytes
 # X is the amount of memory available
 # We sort that chunk save it to memory
 # Once all the chunks are sorted we merge it
 
-## 10.8 Find Duplicates: You have an array with all the numbers from 1 to N, 
-# where N is at most 32,000. The array may have duplicate entries and you do not know 
-# what N is. With only 4 kilobytes of memory available, how would you print 
+## 10.8 Find Duplicates: You have an array with all the numbers from 1 to N,
+# where N is at most 32,000. The array may have duplicate entries and you do not know
+# what N is. With only 4 kilobytes of memory available, how would you print
 # all duplicate elements in the array?
 
 # You have 8 * 4 * 1000 = 32,000 bits available
@@ -194,7 +199,7 @@ def search_nonempty(array, low, high):
 # If we come across a duplicate element print it (ex: if the position in the
 # bit vector contains 1
 
-## 10.9 Sorted Matrix Search: Given an M x N matrix in which each row and each 
+## 10.9 Sorted Matrix Search: Given an M x N matrix in which each row and each
 # column is sorted in ascending order, write a method to find an element.
 
 def sorted_matrix_search(matrix, value):
@@ -212,22 +217,22 @@ def sorted_matrix_search(matrix, value):
     return False
 
 
-## 10.10 Rank from Stream: Imagine you are reading in a stream of integers. 
-# Periodically, you wish to be able to look up the rank of a number x 
-# (the number of values less than or equal to x). Implement the data structures 
-# and algorithms to support these operations.That is, implement the method 
-# track (in t x), which is called when each number is generated, and the method 
-# getRankOfNumber(int x) , which returns the number of values less than 
+## 10.10 Rank from Stream: Imagine you are reading in a stream of integers.
+# Periodically, you wish to be able to look up the rank of a number x
+# (the number of values less than or equal to x). Implement the data structures
+# and algorithms to support these operations.That is, implement the method
+# track (in t x), which is called when each number is generated, and the method
+# getRankOfNumber(int x) , which returns the number of values less than
 # or equal to X (not including x itself).
 
 def rank_from_stream(stream, value):
     bst = populate_bst(stream)
 
-    return get_rank(bst, value) 
+    return get_rank(bst, value)
 
 
 def populate_bst(stream):
-    root = None 
+    root = None
 
     for number in stream:
         if root:
@@ -281,11 +286,11 @@ class RankNode:
         return self.data
 
 
-## 10.11 Peaks and Valleys: In an array of integers, a "peak" is an element 
-# which is greater than or equal to the adjacent integers and a "valley" is an 
-# element which is less than or equal to the adjacent inte- gers. 
-# For example, in the array {5, 8, 6, 2, 3, 4, 6}, {8, 6} are peaks and {S, 2} 
-# are valleys. Given an array of integers, sort the array into an alternating 
+## 10.11 Peaks and Valleys: In an array of integers, a "peak" is an element
+# which is greater than or equal to the adjacent integers and a "valley" is an
+# element which is less than or equal to the adjacent inte- gers.
+# For example, in the array {5, 8, 6, 2, 3, 4, 6}, {8, 6} are peaks and {S, 2}
+# are valleys. Given an array of integers, sort the array into an alternating
 # sequence of peaks and valleys.
 
 def peaks_and_valleys(array):
@@ -298,3 +303,31 @@ def peaks_and_valleys(array):
 
     return array
 
+# Given an array of n elements, where each element is at most k away from its target position,
+# devise an algorithm that sorts in O(n log k) time.
+# For example, let us consider k is 2, an element at index 7 in the sorted array,
+# can be at indexes 5, 6, 7, 8, 9 in the given array.
+# {6, 5, 3, 2, 8, 10, 9}, k = 3
+
+def k_away(array, k):
+    # insert the first k + 1 elements
+    heap = []
+    for i in range(0, k + 1):
+        heapq.heappush(heap, array[i])
+
+    # remove min from the heap
+    # put it in the correct place in array
+    # insert next element from array into the heap
+    target_index = 0
+    for rem_index in range(k + 1, len(array)):
+        array[target_index] = heapq.heappop(heap)
+        heapq.heappush(heap, array[rem_index])
+        target_index += 1
+
+    # take the remaining elements from the heap and
+    # insert them into the array in the correct position
+    while heap:
+        array[target_index] = heapq.heappop(heap)
+        target_index += 1
+
+    return array
