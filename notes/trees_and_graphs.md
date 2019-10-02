@@ -34,20 +34,6 @@
   * The last level has 0 children
   * All leaf nodes at the same level
 
-- Min heaps
-  * Complete binary tree (except the right most elements on the last level)
-  * each node is smaller than its children
-  * root, therefore, is the minimum
-  * inserting
-    - we insert at the rightmost spot 
-    - then we "fix" the tree
-      - swap the new element with its parent
-      - until we find the best spot for it
-      - keep bubbling up elements until the tree is back to a min heap
-      - this take O(log N)
-
-* TO DO: Review Binary Heaps and Tries
-
 ### Graphs
 * Time Complexity for an adjacency list is O(N + M)
 Explanation: O(N + summation(all the degrees on a graph))

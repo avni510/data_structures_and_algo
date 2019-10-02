@@ -37,7 +37,16 @@ class LinkedList:
             array.append(n.data)
             n = n.next
         return array
-    
+
+    def length(self):
+        count = 0
+        next_value = self.head
+        while next_value:
+            count += 1
+            next_value = next_value.next
+
+        return count
+
     def __eq__(self, other):
         n1 = self.head
         n2 = other.head

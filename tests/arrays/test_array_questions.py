@@ -46,3 +46,8 @@ def test_is_string_rotation():
     assert is_string_rotation("hello world", "ldhello wor")
     assert not is_string_rotation("hello", "ello")
     assert not is_string_rotation("world", "dlrow")
+
+def test_get_index():
+    assert get_index([9, 12, 17, 2, 4, 5], 2) == 3
+    assert get_index([10, 11, 15, 16, 2, 3], 15) == 2
+    assert get_index([16, 1, 4, 5, 8, 9], 8) == 4

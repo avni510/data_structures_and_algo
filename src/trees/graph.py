@@ -21,8 +21,8 @@ class Graph:
     # discovered - occurs first time we visit it
     # processed - occurs when all the children of vertex
     # have been discovered
-    # parent - for an edge v1 to v2, the parent is 
-    # v1 and child is v2 undiscovered - when a vertex has not be discovered 
+    # parent - for an edge v1 to v2, the parent is
+    # v1 and child is v2 undiscovered - when a vertex has not be discovered
     def __init__(self):
         self.vertices = {}
         self.discovered = {}
@@ -34,7 +34,7 @@ class Graph:
 
     def add_vertex(self, data):
         new_vertex = Vertex(data)
-        self.vertices[data] =  new_vertex
+        self.vertices[data] = new_vertex
         return new_vertex
 
     def add_edge(self, v1, v2, weight=0):
@@ -48,7 +48,7 @@ class Graph:
     def get_vertex(self, data):
         return self.vertices[data]
 
-    # explores all the nodes at the current depth 
+    # explores all the nodes at the current depth
     # before moving to the next depth
     # easiest to think about bfs in terms of a tree
     # good to use for determing the shortest path
@@ -60,7 +60,7 @@ class Graph:
         search_queue.enqueue(start)
 
         vertex_data = []
-        
+
         while not search_queue.is_empty():
             current_vert = search_queue.dequeue()
             vertex_data.append(current_vert.data)
@@ -72,7 +72,7 @@ class Graph:
             self.processed[current_vert] = True
 
         return vertex_data
-    
+
     def get_vertices(self):
         return list(self.vertices.keys())
 

@@ -4,14 +4,14 @@
 * Tree is a complete binary tree
 * Max-heap: value present at the root node is the largest value. True for all subtrees as well 
 
-    100
+     100
     /   \
   40    50
  /  \   / \
 10  15 20 30
 
 * Min-heap: value present at the root node is the smallest value: True for all subtrees as well
-      10
+     10
     /   \
   20    30
  /  \   / \
@@ -77,4 +77,3 @@ Runtimes:
 * deleteMin: O(log N)
 * remove: O(log N)
 * findMin: O(1)
-

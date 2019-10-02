@@ -40,4 +40,4 @@ def bfs(tree):
             if subtree.left: next_level.append(subtree.left)
             if subtree.right: next_level.append(subtree.right)
         current_level = next_level
-    return values 
+    return values

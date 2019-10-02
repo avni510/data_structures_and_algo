@@ -2,7 +2,7 @@ import random
 import math
 # 8.1 Triple Step: A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3
 # steps at a time. Implement a method to count how many possible ways the child can run up the
-# stairs. 
+# stairs.
 
 def triple_step(n):
     values_in_memo = n + 1
@@ -19,10 +19,10 @@ def do_triple_step(n, memo):
         memo[n] = do_triple_step(n - 1, memo) + do_triple_step(n - 2, memo) + do_triple_step(n - 3, memo)
         return memo[n]
 
-# 8.3 Magic Index: A magic index in an array A[0...n-1] 
-# is defined to be an index such that A[i] = i. 
-# Given a sorted array of distinct integers, 
-# write a method to find a magic index, if one exists, 
+# 8.3 Magic Index: A magic index in an array A[0...n-1]
+# is defined to be an index such that A[i] = i.
+# Given a sorted array of distinct integers,
+# write a method to find a magic index, if one exists,
 # in array A.
 
 def magic_index(array):
@@ -42,7 +42,7 @@ def do_magic_index(array, start, end):
 
 # 8.5 Recursive Multiply: Write a recursive function to multiply two positive integers without using
 # the * operator (or / operator). You can use addition, subtraction, and bit shifting, but you should
-# minimize the number of those operations. 
+# minimize the number of those operations.
 
 def recursive_multiply(x, y):
     if x < y:
@@ -56,8 +56,8 @@ def do_recursive_multiply(x, y, acc):
     else:
         return do_recursive_multiply(x, y - 1, acc + x)
 
-# 8.7 Permutations without Dups: Write a method to compute all permutations 
-# of a string of unique characters. 
+# 8.7 Permutations without Dups: Write a method to compute all permutations
+# of a string of unique characters.
 
 def permutations(string):
     return do_permutation(string, [], math.factorial(len(string)))

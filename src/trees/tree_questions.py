@@ -3,7 +3,7 @@
 
 from src.trees.binary_tree import BinaryTree
 from src.trees.search_algorithms import inorder
-import copy 
+import copy
 import random
 
 def create_min_tree(values, start = 0, end = None):
@@ -36,7 +36,7 @@ def linked_list_tree(tree):
             if parent.left: current.append(parent.left)
             if parent.right: current.append(parent.right)
     return result
-    
+
 # 4.4 Implement a function to check if a binary tree is balanced. A balanced tree
 # is defined as a tree such that the heights of the two subtrees of any node
 # never differ by more than one
@@ -57,7 +57,7 @@ def check_height(tree):
 
     right_height = check_height(tree.right)
     if right_height is None: return None
-    
+
     height_diff = left_height - right_height
 
     if abs(height_diff) > 1:
@@ -81,7 +81,7 @@ def inorder_successor(tree):
     if tree is None: return None
 
     # Found right child -> return leftmost node of right subtree
-    if tree.right: 
+    if tree.right:
         return left_most_child(tree.right)
     else:
         # go up the tree, find the parent node, continue to traverse up
@@ -102,7 +102,7 @@ def left_most_child(tree):
     return tree.data
 
 # 4.8 Find the first common ancestor of two nodes in a binary tree. Avoid storing
-# additional nodes in a data structure. 
+# additional nodes in a data structure.
 
 def common_ancestor(tree_1, tree_2):
     if tree_1.parent is None:
@@ -114,8 +114,8 @@ def common_ancestor(tree_1, tree_2):
     else:
         common_ancestor(tree_1.parent, tree_2.parent)
 
-# 4.9 BST Sequences: A binary search tree was created by traversing through an array from left to right and inserting 
-# each element. Given a binary search tree with distinct elements, print all possible arrays that could have 
+# 4.9 BST Sequences: A binary search tree was created by traversing through an array from left to right and inserting
+# each element. Given a binary search tree with distinct elements, print all possible arrays that could have
 # led to this tree
 
 def weave(first, second, result, prefix):
@@ -127,7 +127,7 @@ def weave(first, second, result, prefix):
     first_head = first[0]
     new_prefix = copy.deepcopy(prefix) + [first_head]
     weave(first[1:], second, result, new_prefix)
-    
+
     second_head = second[0]
     new_prefix = copy.deepcopy(prefix) + [second_head]
     return weave(first, second[1:], result, new_prefix)
@@ -156,7 +156,7 @@ def all_sequences(tree):
                 result += weaved
         return result
 
-# 4.10 Check Subtree: T1 and T2 are two very large binary trees, with T1 much bigger than T2. 
+# 4.10 Check Subtree: T1 and T2 are two very large binary trees, with T1 much bigger than T2.
 # Create an algorithm to determine if T2 is a subtree of T1
 
 def get_order_string(tree, order_string = ""):
@@ -175,9 +175,9 @@ def check_subtree(tree, subtree):
     return subtree_order_string in tree_order_string
 
 
-# 4.11 Random Node: You are implementing a binary search tree class from scratch, which, in addition to insert, 
-# find, and delete, has a method getRandomNode() which returns a random node from the tree. 
-# All nodes should be equally likely to be chosen. 
+# 4.11 Random Node: You are implementing a binary search tree class from scratch, which, in addition to insert,
+# find, and delete, has a method getRandomNode() which returns a random node from the tree.
+# All nodes should be equally likely to be chosen.
 # Design and implement an algorithm for getRandomNode, and explain how you would implement the rest of the methods.
 
 class SpecialBinarySearchTree():
@@ -210,9 +210,9 @@ class SpecialBinarySearchTree():
         self.number_of_nodes += 1
 
     # probability of selecting a node is 1/N
-    # probability of selecting a node from the left 
+    # probability of selecting a node from the left
     # is (number of nodes on the left * 1/N)
-    # probability of selecting a node from the right 
+    # probability of selecting a node from the right
     # is (number of nodes on the right * 1/N)
     def get_random_node(self):
         if self.left:
@@ -234,7 +234,20 @@ class SpecialBinarySearchTree():
         else:
             return self.data
 
-# 4.12 Paths with Sum: You are given a binary tree in which each node contains an integer value 
-# (which might be positive or negative). Design an algorithm to count the number of paths 
-# that sum to a given value.The path does not need to start or end at the root or a leaf, 
-# but it must go downwards (traveling only from parent nodes to child nodes).
+# 17.7 (Additional Questions) Baby Names: Each year, the government releases a list of the 10,000 most common baby names
+# and their frequencies (the number of babies with that name). The only problem with this is that
+# some names have multiple spellings. For example, "John" and "ion"are essentially the same name
+# but would be listed separately in the list. Given two lists, one of names/frequencies and the other
+# of pairs of equivalent names, write an algorithm to print a new list of the true frequency of each
+# name. Note that if John and Jon are synonyms, and Jon and Johnny are synonyms, then John and
+# Johnny are synonyms, (It is both transitive and symmetric.) In the final list, any name can be used
+# as the "real" name.
+
+# Input:
+# Names: John (15), Jon (12), Chris (13), Kris (4), Christopher (19)
+# Synonyms: (Jon, John), (John, Johnny), (Chris, Kris), (Chris, Christopher)
+# Output; John (27), Kris (36)
+
+# def baby_names(names, synonyms):
+
+
