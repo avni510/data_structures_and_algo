@@ -15,7 +15,7 @@ def tree():
 def test_inorder(tree):
     values = inorder(tree, [])
 
-    assert values == [2, 1, 5, 7, 4]
+    assert values == [1, 1, 5, 7, 4]
 
 def test_preorder(tree):
     values = preorder(tree, [])

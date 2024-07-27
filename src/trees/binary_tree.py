@@ -84,12 +84,9 @@ class BinarySearchTree:
 
 def height(tree):
     if tree is None:
-        return 0
+        return -1
     else:
         left_height = height(tree.get_left_child())
         right_height = height(tree.get_right_child())
 
-    if (left_height > right_height):
-        return left_height + 1
-    else:
-        return right_height + 1
+    return max(left_height, right_height) + 1

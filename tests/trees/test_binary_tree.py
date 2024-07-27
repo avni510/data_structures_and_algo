@@ -27,7 +27,7 @@ def test_height():
 
     result = height(tree) 
 
-    assert result == 3
+    assert result == 2
 
 def test_equality():
     tree_1 = BinaryTree(5)
